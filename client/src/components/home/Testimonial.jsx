@@ -1,5 +1,6 @@
 import React from 'react'
 import { BookUserIcon } from 'lucide-react'
+import Title from './Title'
 
 const Testimonial = () => {
   return (
