@@ -31,6 +31,10 @@ const Dashboard = () => {
 
   }
 
+  const editTitle = async(event)=>{
+    event.preventDefault();
+  }
+
   useEffect(() => {
     loadAllResumes()
   }, [])
@@ -91,7 +95,7 @@ const Dashboard = () => {
                   borderColor: baseColor + "40"
                 }}
               >
-                <FilePenLineIcon
+                <FilePenLineIcon onClick={()=>{setEditResumeId(resume._id); setTitle(resume.title)}}
                   className='size-7 group-hover:scale-105 transition-all'
                   style={{ color: baseColor }}
                 />
