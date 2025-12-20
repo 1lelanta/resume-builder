@@ -81,7 +81,8 @@ const Dashboard = () => {
 
         <hr className='border-slate-300 my-6 sm:w-[305px]' />
 
-        <div className='grid grid-cols-2 sm:flex flex-wrap gap-4'>
+        <div  
+         className='grid grid-cols-2 sm:flex flex-wrap gap-4'>
           {allResumes.map((resume, index) => {
             const baseColor = colors[index % colors.length]
             return (
@@ -95,7 +96,7 @@ const Dashboard = () => {
                   borderColor: baseColor + "40"
                 }}
               >
-                <FilePenLineIcon onClick={()=>{setEditResumeId(resume._id); setTitle(resume.title)}}
+                <FilePenLineIcon 
                   className='size-7 group-hover:scale-105 transition-all'
                   style={{ color: baseColor }}
                 />
@@ -114,10 +115,10 @@ const Dashboard = () => {
                   Updated on {new Date(resume.updatedAt).toLocaleDateString()}
                 </p>
 
-                <div className='absolute top-1 right-1 group-hover:flex items-center hidden'>
+                <div onClick={e=>e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex items-center hidden'>
                   <TrashIcon className='size-7 p-1.5 hover:bg-white/50 rounded
                   text-slate-700 transition-colors' />
-                  <PencilIcon className='size-7 p-1.5 hover:bg-white/50 rounded
+                  <PencilIcon onClick={()=>setEditResumeId(resume._id)} className='size-7 p-1.5 hover:bg-white/50 rounded
                   text-slate-700 transition-colors' />
                 </div>
               </button>
@@ -232,7 +233,6 @@ const Dashboard = () => {
         {editResumeId && (
           <form
             onSubmit={editTitle}
-            onClick={() => setEditResumeId('')}
             className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50
             z-10 flex items-center justify-center'
           >
@@ -258,7 +258,7 @@ const Dashboard = () => {
                 className='absolute top-4 right-4 text-slate-400
                 hover:text-slate-600 cursor-pointer transition-colors'
                 onClick={() => {
-                  editResumeId("")
+                  setEditResumeId("")
                   setTitle('')
                 }}
               />
