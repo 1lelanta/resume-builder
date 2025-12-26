@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
 
@@ -23,8 +23,13 @@ const ResumeBuilder = () => {
     const resume = dummyResumeData.find(resume=> resume._id===resumeId)
     if(resume){
       setResumeData(resume)
+      document.title = resume.title
     }
   } 
+
+  useEffect(()=>{
+    loadExistingResume()
+  },[])
 
   return (
     <div>
