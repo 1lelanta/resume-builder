@@ -32,6 +32,9 @@ const ResumeBuilder = () => {
     loadExistingResume()
   },[])
 
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
+  const [removeBackground, setRemoveBackground] = useState(false);
+
   const sections = [
     {id:"personal", name:"personal Info", icon:User},
     {id: "summary", name: "summery", icon: FileText},
@@ -40,6 +43,8 @@ const ResumeBuilder = () => {
     {id:"projects", name:"projects", icon: FolderIcon},
     {id:"skills", name: "Skills", icon:Sparkle}
   ]
+
+  const activeSection = sections[activeSectionIndex]
 
   return (
     <div>
