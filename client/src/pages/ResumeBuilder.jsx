@@ -79,6 +79,9 @@ const ResumeBuilder = () => {
                   text-sm font-medium text-gray-600 hover:bg-gray-50'>
                     <ChevronLeft className='size-4'/>Previous
                   </button>
+                  <divc className>
+
+                  </div>
                 )}
               </div>
             </div>
