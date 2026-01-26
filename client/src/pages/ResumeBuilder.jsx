@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
-import { ArrowLeftIcon, Briefcase, ChevronLeft, FileText, FolderIcon, GraduationCap, Sparkle, Sparkles, User } from 'lucide-react'
+import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkle, Sparkles, User } from 'lucide-react'
 
 const ResumeBuilder = () => {
   const {resumeId} = useParams()
@@ -75,19 +75,30 @@ const ResumeBuilder = () => {
               <div></div>
               <div className='flex items-center'>
                 {activeSectionIndex !==0 &&(
-                  <button className='flex items-center gap-1 p-3 rounded-lg
-                  text-sm font-medium text-gray-600 hover:bg-gray-50'>
+                  <button onClick={(prevIndex)=> setActiveSectionIndex(()=>Math.max(prevIndex-1, 0))} className='flex items-center gap-1 p-3 rounded-lg
+                  text-sm font-medium text-gray-600 hover:bg-gray-50' disabled={activeSectionIndex===0}>
                     <ChevronLeft className='size-4'/>Previous
                   </button>
-                  <divc className>
-
-                  </div>
+                  
                 )}
+
+                <button onClick={(prevIndex)=> setActiveSectionIndex(()=>Math.min(prevIndex+1, sections.length-1))} 
+                className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium
+                  text-gray-600 hover:bg-gray-50  transition-all ${activeSectionIndex===sections.length-1 && 'opacity-50'}`} 
+                disabled={activeSectionIndex=== sections.length-1}>
+                    <ChevronRight className='size-4'/>Next
+                  </button>
+              </div>
+              {/* Form content */}
+              <div className='space-y-6'>
+                {activeSection.id==='personal' &&(
+                  <div></div>
+                )}
+
               </div>
             </div>
-
           </div>
-          {/* right panel */}
+          {/* right panel - preview */}
           <div></div>
         </div>
 
