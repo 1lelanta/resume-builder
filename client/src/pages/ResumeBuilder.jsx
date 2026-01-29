@@ -1,109 +1,151 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
-import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkle, Sparkles, User } from 'lucide-react'
+import {
+  ArrowLeftIcon,
+  Briefcase,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  FolderIcon,
+  GraduationCap,
+  Sparkle,
+  User
+} from 'lucide-react'
+import PersonalInfoForm from '../components/PersonalInfoForm'
 
 const ResumeBuilder = () => {
-  const {resumeId} = useParams()
+  const { resumeId } = useParams()
 
   const [resumeData, setResumeData] = useState({
-    _id:'',
-    title:'',
-    personal_info:{},
-    proffessional_summary:"",
+    _id: '',
+    title: '',
+    personal_info: {},
+    proffessional_summary: "",
     experience: [],
-    education:[],
-    project:[],
-    skills:[],
-    template:"classic",
+    education: [],
+    project: [],
+    skills: [],
+    template: "classic",
     accent_color: "#3882f6",
-    public:false,
+    public: false,
   })
 
-  const loadExistingResume = ()=>{
-    const resume = dummyResumeData.find(resume=> resume._id===resumeId)
-    if(resume){
+  const loadExistingResume = () => {
+    const resume = dummyResumeData.find(resume => resume._id === resumeId)
+    if (resume) {
       setResumeData(resume)
       document.title = resume.title
     }
-  } 
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     loadExistingResume()
-  },[])
+  }, [])
 
-  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
-  const [removeBackground, setRemoveBackground] = useState(false);
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+  const [removeBackground, setRemoveBackground] = useState(false)
 
   const sections = [
-    {id:"personal", name:"personal Info", icon:User},
-    {id: "summary", name: "summery", icon: FileText},
-    {id:"exprience", name:"Experience", icon:Briefcase},
-    {id:"education", name:"Education", icon:GraduationCap},
-    {id:"projects", name:"projects", icon: FolderIcon},
-    {id:"skills", name: "Skills", icon:Sparkle}
+    { id: "personal", name: "personal Info", icon: User },
+    { id: "summary", name: "summery", icon: FileText },
+    { id: "exprience", name: "Experience", icon: Briefcase },
+    { id: "education", name: "Education", icon: GraduationCap },
+    { id: "projects", name: "projects", icon: FolderIcon },
+    { id: "skills", name: "Skills", icon: Sparkle }
   ]
 
   const activeSection = sections[activeSectionIndex]
 
   return (
-    <div>
-      <div className='max-w-7xl mx-auto px-4 py-6'>
-        <Link to={'/app'}  className='inline-flex gap-2 items-center text-slate-500
-        hover:text-slate-700 transition-all'>
-          <ArrowLeftIcon className='size-4'/>
+    <div >
+      <div className='max-w-7xl mx-auto px-8 py-6'>
+        <Link
+          to={'/app'}
+          className='inline-flex gap-2 items-center text-slate-500
+          hover:text-slate-700 transition-all'
+        >
+          <ArrowLeftIcon className='size-4' />
           Back to Dashboard
         </Link>
       </div>
-      <div className='max-w-7xl mx-auto px-4 pb-8'>
+
+      <div className='max-w-7xl mx-auto px-8 pb-8'>
         <div className='grid lg:grid-cols-12 gap-8'>
-          {/* left panel  */}
+          {/* left panel */}
           <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
-            <div className='bg-white rounded-lg shadow-sm border border-gray-200
-            p-6 pt-1'>
-                {/* progress bar using activeSecitonIndex */}
-                <hr className='absolute top-0 left-0 right-0 border-2
-                border-gray-200'/>
-                <hr className='absolute top-0 left-0 h-1 bg-gradient-to-r 
-                from-blue-500 to blue-600 border-none transition-all duration-2000'
-                style={{width:`${activeSectionIndex*100/(sections.length-1)}%`}}/>
-            </div>
+            <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1 '>
+              <hr className='absolute top-0 left-0 right-0 border-2 border-gray-200' />
+              <hr
+                className='absolute top-0 left-0 h-1 bg-gradient-to-r 
+                from-blue-500 to-blue-600 border-none transition-all duration-2000'
+                style={{
+                  width: `${activeSectionIndex * 100 / (sections.length - 1)}%`
+                }}
+              />
+           
 
             {/* section navigation */}
-            <div className='flex justify-between items-center mb-6 border-b 
-            border-gray-300 py-1'>
+            <div className='flex justify-between items-center mb-6 border-b border-gray-300 py-1'>
               <div></div>
+
               <div className='flex items-center'>
-                {activeSectionIndex !==0 &&(
-                  <button onClick={(prevIndex)=> setActiveSectionIndex(()=>Math.max(prevIndex-1, 0))} className='flex items-center gap-1 p-3 rounded-lg
-                  text-sm font-medium text-gray-600 hover:bg-gray-50' disabled={activeSectionIndex===0}>
-                    <ChevronLeft className='size-4'/>Previous
+                {activeSectionIndex !== 0 && (
+                  <button
+                    onClick={() =>
+                      setActiveSectionIndex(prev =>
+                        Math.max(prev - 1, 0)
+                      )
+                    }
+                    className='flex items-center gap-1 p-3 rounded-lg
+                    text-sm font-medium text-gray-600 hover:bg-gray-50'
+                  >
+                    <ChevronLeft className='size-4' />
+                    Previous
                   </button>
-                  
                 )}
 
-                <button onClick={(prevIndex)=> setActiveSectionIndex(()=>Math.min(prevIndex+1, sections.length-1))} 
-                className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium
-                  text-gray-600 hover:bg-gray-50  transition-all ${activeSectionIndex===sections.length-1 && 'opacity-50'}`} 
-                disabled={activeSectionIndex=== sections.length-1}>
-                    <ChevronRight className='size-4'/>Next
-                  </button>
-              </div>
-              {/* Form content */}
-              <div className='space-y-6'>
-                {activeSection.id==='personal' &&(
-                  <div></div>
-                )}
-
+                <button
+                  onClick={() =>
+                    setActiveSectionIndex(prev =>
+                      Math.min(prev + 1, sections.length - 1)
+                    )
+                  }
+                  className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium
+                  text-gray-600 hover:bg-gray-50 transition-all
+                  ${activeSectionIndex === sections.length - 1 && 'opacity-50'}`}
+                  disabled={activeSectionIndex === sections.length - 1}
+                >
+                  <ChevronRight className='size-4' />
+                  Next
+                </button>
               </div>
             </div>
+
+            {/* Form content (FIXED POSITION) */}
+            <div className='space-y-6'>
+              {activeSection.id === 'personal' && (
+                <PersonalInfoForm
+                  data={resumeData.personal_info}
+                  onChange={(data) =>
+                    setResumeData(prev => ({
+                      ...prev,
+                      personal_info: data
+                    }))
+                  }
+                  removeBackground={removeBackground}
+                  setRemoveBackgraund={setRemoveBackground}
+                />
+              )}
+            </div>
           </div>
+
           {/* right panel - preview */}
           <div></div>
         </div>
-
       </div>
     </div>
+     </div>
   )
 }
 
