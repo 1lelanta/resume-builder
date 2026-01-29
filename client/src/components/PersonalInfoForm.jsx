@@ -5,6 +5,9 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackgraund
     const handleChange = (field, value)=>{
         onChange({...data,[field]:value})
     }
+    const fields =[
+        {key:"full_name", label:"Full Name", icon:User,type:'text', required:true}
+    ]
   return (
     <div>
         <h3 className='text-lg font-semibold text-gray-900'>Personal Information</h3>
@@ -47,6 +50,8 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackgraund
             )}
 
         </div>
+
+
 
     </div>
   )
