@@ -1,12 +1,22 @@
-import { User } from 'lucide-react'
+import { BriefcaseBusiness, Globe, Linkedin, Mail, MapPin, Phone, User } from 'lucide-react'
 import React from 'react'
 
 const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackgraund}) => {
     const handleChange = (field, value)=>{
         onChange({...data,[field]:value})
     }
+
+    // input fields 
     const fields =[
-        {key:"full_name", label:"Full Name", icon:User,type:'text', required:true}
+        {key:"full_name", label:"Full Name", icon:User,type:'text', required:true},
+        
+        {key:"email", label:"Email Address", icon:Mail,type:'email', required:true},
+        {key:"phone", label:"Phone Number", icon:Phone,type:'tel'},
+        {key:"location", label:"Location", icon:MapPin,type:'text'},
+        {key:"profession", label:"Profession", icon:BriefcaseBusiness,type:'text'},
+        {key:"linkedin", label:"LinkedIn Profile", icon:Linkedin,type:'url'},
+        {key:"location", label:"Location", icon:MapPin,type:'text'},
+        {key:"website", label:"Personal Website", icon:Globe,type:'text'}
     ]
   return (
     <div>
