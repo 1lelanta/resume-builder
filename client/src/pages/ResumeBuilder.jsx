@@ -139,10 +139,17 @@ const ResumeBuilder = () => {
               )}
             </div>
           </div>
+          </div>
 
           {/* right panel - preview */}
-          <div></div>
-        </div>
+          <div className='lg:col-span-7 max-lg:mt-6'>
+            <div>
+              {/* button */}
+            </div>
+
+            {/* resume preview */}
+
+          </div>
       </div>
     </div>
      </div>
