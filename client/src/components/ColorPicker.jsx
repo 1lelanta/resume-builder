@@ -1,4 +1,4 @@
-import { Palette } from 'lucide-react'
+import { Check, Palette } from 'lucide-react'
 import React, { useState } from 'react'
 
 const ColorPicker = ({selectedColor, onChange}) => {
@@ -38,7 +38,11 @@ const ColorPicker = ({selectedColor, onChange}) => {
                             transition-colors" style={{backgroundColor:color.value}}>
 
                         </div>
-                        
+                        {selectedColor===color.value &&(
+                            <div>
+                                <Check className='size-5 text-white'/>
+                            </div>
+                        )}
                     </div>
                 ))}
 
