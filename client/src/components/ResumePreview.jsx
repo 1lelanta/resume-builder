@@ -15,13 +15,13 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
             case "minimal-image":
                 return <MinimalImageTemplate data={data} accentColor={accentColor}/>;
             default:
-                return
+                return <ClassicTemplate data={data} accentColor={accentColor}/>
         }
     }
   return (
     <div className='w-full bg-gray-100'>
         <div id='resume-preview' className={"border border-gray-200 print:shadow-none print:border-none" + classes}>
-
+            {renderTemplate()}
         </div>
     </div>
   )
