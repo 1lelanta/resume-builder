@@ -1,9 +1,12 @@
 import React from 'react'
 
-const ProfessionalSummeryFrom = () => {
+const ProfessionalSummeryFrom = ({data, onChange, setResumeData}) => {
   return (
-    <div>
-        
+    <div className='space-y-4'>
+        <div className='flex items-center justify-between'>
+    
+        </div>
+
     </div>
   )
 }
