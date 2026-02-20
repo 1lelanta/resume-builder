@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { data, Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
 import {
   ArrowLeftIcon,
@@ -16,6 +16,7 @@ import PersonalInfoForm from '../components/PersonalInfoForm'
 import ResumePreview from '../components/ResumePreview'
 import TemplateSelector from '../components/TemplateSelector'
 import ColorPicker from '../components/ColorPicker'
+import ProfessionalSummeryFrom from '../components/ProfessionalSummeryFrom'
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams()
@@ -131,7 +132,7 @@ const ResumeBuilder = () => {
               </div>
             </div>
 
-            {/* Form content (FIXED POSITION) */}
+            {/* Form content  */}
             <div className='space-y-6'>
               {activeSection.id === 'personal' && (
                 <PersonalInfoForm
@@ -145,6 +146,10 @@ const ResumeBuilder = () => {
                   removeBackground={removeBackground}
                   setRemoveBackgraund={setRemoveBackground}
                 />
+              )}
+              {activeSection.id === 'summary' &&(
+                <ProfessionalSummeryFrom data={resumeData.proffessional_summary} 
+                onChange={(data)=>setResumeData(prev =>({...prev, proffessional_summary:data}))} setResumeData={setResumeData}/>
               )}
             </div>
           </div>
