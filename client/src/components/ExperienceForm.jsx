@@ -1,5 +1,6 @@
 import { Plus } from 'lucide-react'
 import React from 'react'
+import { data } from 'react-router-dom'
 
 const ExperienceForm = () => {
 
@@ -11,13 +12,19 @@ const ExperienceForm = () => {
             description: "",
             is_current: false
         }
-        onchange([...data, newExperience])
+        onChange([...data, newExperience])
     }
 
     const removeExperience = (index)=>{
         const  updated = data.filter((_, i)=> i !==index);
-        onchange(updated)
+        onChange(updated)
 
+    }
+
+    const updateExperience = (index, field, value)=>{
+        const updated = [...data];
+        updated[index] = {...updated[index], [field]: value}
+        onChange(updated)
     }
   return (
     <div className='space-y-6'>
